@@ -1,34 +1,58 @@
-﻿<Window x:Class="Calculator.MainWindow"
+<Window x:Class="Calculator.MainWindow"
         xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
         xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
         xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
         xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
         xmlns:local="clr-namespace:Calculator"
         mc:Ignorable="d"
-        Title="Calculator" Height="309" Width="500" MinWidth="500" MinHeight="300">
+        Title="Calculator" Height="400" Width="500" MinWidth="300" MinHeight="340" Background="#3FA9FC">
     <Grid>
 
-        <Viewbox x:Name="buttonsbox" Margin="25,6,19,0" HorizontalAlignment="Center" Width="227" Height="128px">
-            <Grid Height="130" Width="230" MinWidth="230">
-                <TextBox x:Name="displayTextbox" TextAlignment="Center" Height="39" Margin="-1,-44,0,0"  TextWrapping="Wrap" VerticalAlignment="Top" Padding="0,8,0,0" Width="230" SpellCheck.IsEnabled="True"/>
-                <Button x:Name="oneButton" Content="1" HorizontalAlignment="Left" Margin="-2,38,0,0" VerticalAlignment="Top" Width="52" Click="NumOpButton_Click" Height="30" />
-                <Button x:Name="twoButton" Content="2" HorizontalAlignment="Left" Margin="57,38,0,0" VerticalAlignment="Top" Width="53" Click="NumOpButton_Click" Height="30" />
-                <Button x:Name="threeButton" Content="3" HorizontalAlignment="Left" Margin="117,38,0,0" VerticalAlignment="Top" Width="52" Click="NumOpButton_Click" Height="30" />
-                <Button x:Name="clearButton" Content="C" HorizontalAlignment="Left" Margin="117,0,0,0" VerticalAlignment="Top" Width="52" Click="FuncButton_Click" Height="28" />
-                <Button x:Name="fourButton" Content="4" HorizontalAlignment="Left" Margin="-2,78,0,0" VerticalAlignment="Top" Width="52" Click="NumOpButton_Click" Height="29" />
-                <Button x:Name="fiveButton" Content="5" HorizontalAlignment="Left" Margin="57,78,0,0" VerticalAlignment="Top" Width="53" Click="NumOpButton_Click" Height="29" />
-                <Button x:Name="sixButton" Content="6" HorizontalAlignment="Left" Margin="117,78,0,0" VerticalAlignment="Top" Width="52" Click="NumOpButton_Click" Height="29" />
-                <Button x:Name="sevenButton" Content="7" HorizontalAlignment="Left" Margin="-2,117,0,-16" VerticalAlignment="Top" Width="52" Click="NumOpButton_Click" Height="29" />
-                <Button x:Name="eightButton" Content="8" HorizontalAlignment="Left" Margin="57,117,0,-16" VerticalAlignment="Top" Width="53" Click="NumOpButton_Click" Height="29" />
-                <Button x:Name="nineButton" Content="9" HorizontalAlignment="Left" Margin="117,117,0,-16" VerticalAlignment="Top" Width="52" Click="NumOpButton_Click" Height="29" />
-                <Button x:Name="zeroButton" Content="0" HorizontalAlignment="Left" Margin="-2,156,0,-55" VerticalAlignment="Top" Width="112" Click="NumOpButton_Click" Height="29" />
-                <Button x:Name="subButton" Content="-" HorizontalAlignment="Left" Margin="178,117,0,-16" VerticalAlignment="Top" Width="51" Click="NumOpButton_Click" Height="29" />
-                <Button x:Name="addButton" Content="+" HorizontalAlignment="Left" Margin="178,78,0,0" VerticalAlignment="Top" Width="51" Click="NumOpButton_Click" Height="29" />
-                <Button x:Name="divButton" Content="/" HorizontalAlignment="Left" Margin="178,38,0,0" VerticalAlignment="Top" Width="51" Click="NumOpButton_Click" Height="30" />
-                <Button x:Name="multButton" Content="x" HorizontalAlignment="Left" Margin="178,0,0,0" VerticalAlignment="Top" Width="51" Click="NumOpButton_Click" Height="28" />
-                <Button x:Name="calcButton" Content="=" HorizontalAlignment="Left" Margin="178,156,0,-55" VerticalAlignment="Top" Width="51" Click="calcButton_Click" Height="29"/>
-                <Button x:Name="decPointButton" Content="." HorizontalAlignment="Left" Margin="117,156,0,-55" VerticalAlignment="Top" Width="52" Click="NumOpButton_Click" Height="29"/>
-            </Grid>
+        <Viewbox x:Name="buttonsbox" Margin="0" HorizontalAlignment="Center" Width="227" Height="300px">
+
+            <Border Background="white" Height="361" Padding="20" CornerRadius="10">
+
+                <Grid Width="230" MinWidth="230" Margin="0,86,0,-0.333">
+
+                    <!-- funcs -->
+                    <Button x:Name="CEbtn" Click="FunctionButtonClicked" HorizontalAlignment="Left" Margin="117,0,0,0" VerticalAlignment="Top" Width="52" Height="33" Background="#D9EFFF" BorderBrush="White" Foreground="#FF5AB6FE" FontWeight="SemiBold" FontSize="14">CE</Button>
+                    <Button x:Name="Cbtn" Click="FunctionButtonClicked" HorizontalAlignment="Left" Margin="58,0,0,0" VerticalAlignment="Top" Width="54" Height="33" Background="#D9EFFF" BorderBrush="White" Foreground="#FF5AB6FE" FontWeight="SemiBold" FontSize="14">C</Button>
+                    <Button x:Name="Backbtn" Click="FunctionButtonClicked" HorizontalAlignment="Left" VerticalAlignment="Top" Width="53" Height="33" Background="#D9EFFF" BorderBrush="White" Foreground="#FF5AB6FE" FontWeight="SemiBold" FontSize="14">⌫</Button>
+
+                    <!--res texts-->
+                    <TextBox x:Name="outputTxt" IsReadOnly="True" TextAlignment="Right" VerticalAlignment="Top" FontSize="25"
+                         Background="#fff" Foreground="#FF146080" Margin="0,-59,0,0" Height="45" BorderThickness="0,0,0,1" FontWeight="Bold" Padding="0,3,5,0" BorderBrush="#FFE6E6E6">0</TextBox>
+                    <Label x:Name="label" Visibility="Visible" HorizontalContentAlignment="Right" HorizontalAlignment="right" VerticalAlignment="Top" FontSize="15"
+                Background="#fff" Foreground="#FFBEBEBE" Margin="0,-94,0,0" BorderBrush="White" Width="187" Content="" FontWeight="SemiBold"/>
+
+                    <!--nums-->
+                    <Button x:Name="sqrtButton" Content="√" HorizontalAlignment="Left" Margin="-2,38,0,0" VerticalAlignment="Top" Width="52" Click="SquareRoot" Height="32" Background="#D9EFFF" BorderBrush="White" Foreground="#FF5AB6FE" FontWeight="SemiBold" FontSize="14"/>
+                    <Button x:Name="powerButton" Content="x²" HorizontalAlignment="Left" Margin="59,38,0,0" VerticalAlignment="Top" Width="53" Click="Power" Height="32" Background="#D9EFFF" BorderBrush="White" Foreground="#FF5AB6FE" FontWeight="SemiBold" FontSize="14"/>
+                    <Button x:Name="OneByNumber" Content="1/x" HorizontalAlignment="Left" Margin="117,38,0,0" VerticalAlignment="Top" Width="52" Click="DivideByOne" Height="32" Background="#D9EFFF" BorderBrush="White" Foreground="#FF5AB6FE" FontWeight="SemiBold" FontSize="14"/>
+                    <Button x:Name="cubeRoot" Content="∛" HorizontalAlignment="Left" Margin="177,38,0,0" VerticalAlignment="Top" Width="53" Click="CubeRoot" Height="32" Background="#D9EFFF" BorderBrush="White" Foreground="#FF5AB6FE" FontWeight="SemiBold" FontSize="14"/>
+                    <Button x:Name="oneButton" Content="1" HorizontalAlignment="Left" Margin="-2,75,0,0" VerticalAlignment="Top" Width="55" Click="NumberButtonClicked" Height="30" Background="#F4FAFF" BorderBrush="White" Foreground="#8E9093" FontSize="14" FontWeight="SemiBold" />
+                    <Button x:Name="twoButton" Content="2" HorizontalAlignment="Left" Margin="57,75,0,0" VerticalAlignment="Top" Width="55" Click="NumberButtonClicked" Height="30" Background="#F4FAFF" BorderBrush="White" Foreground="#8E9093" FontSize="14" FontWeight="SemiBold"/>
+                    <Button x:Name="threeButton" Content="3" HorizontalAlignment="Left" Margin="117,75,0,0" VerticalAlignment="Top" Width="52" Click="NumberButtonClicked" Height="30" Background="#F4FAFF" BorderBrush="White" Foreground="#8E9093" FontSize="14" FontWeight="SemiBold"/>
+                    <Button x:Name="fourButton" Content="4" HorizontalAlignment="Left" Margin="-2,110,0,0" VerticalAlignment="Top" Width="52" Click="NumberButtonClicked" Height="29" Background="#F4FAFF" BorderBrush="White" Foreground="#8E9093" FontSize="14" FontWeight="SemiBold"/>
+                    <Button x:Name="fiveButton" Content="5" HorizontalAlignment="Left" Margin="58,110,0,0" VerticalAlignment="Top" Width="54" Click="NumberButtonClicked" Height="29" Background="#F4FAFF" BorderBrush="White" Foreground="#8E9093" FontSize="14" FontWeight="SemiBold"/>
+                    <Button x:Name="sixButton" Content="6" HorizontalAlignment="Left" Margin="116,110,0,0" VerticalAlignment="Top" Width="53" Click="NumberButtonClicked" Height="29" Background="#F4FAFF" BorderBrush="White" Foreground="#8E9093" FontSize="14" FontWeight="SemiBold"/>
+                    <Button x:Name="sevenButton" Content="7" HorizontalAlignment="Left" Margin="-2,144,0,0" VerticalAlignment="Top" Width="55" Click="NumberButtonClicked" Height="29" Background="#F4FAFF" BorderBrush="White" Foreground="#8E9093" FontSize="14" FontWeight="SemiBold"/>
+                    <Button x:Name="eightButton" Content="8" HorizontalAlignment="Left" Margin="57,144,0,0" VerticalAlignment="Top" Width="55" Click="NumberButtonClicked" Height="29" Background="#F4FAFF" BorderBrush="White" Foreground="#8E9093" FontSize="14" FontWeight="SemiBold"/>
+                    <Button x:Name="nineButton" Content="9" HorizontalAlignment="Left" Margin="117,144,0,0" VerticalAlignment="Top" Width="52" Click="NumberButtonClicked" Height="29" Background="#F4FAFF" BorderBrush="White" Foreground="#8E9093" FontSize="14" FontWeight="SemiBold"/>
+                    <Button x:Name="zeroButton" Content="0" HorizontalAlignment="Left" Margin="-2,178,0,0" VerticalAlignment="Top" Width="114" Click="NumberButtonClicked" Height="29" Background="#D9EFFF" BorderBrush="White" Foreground="#FF5AB6FE" FontWeight="SemiBold" FontSize="14"/>
+                    <Button x:Name="subButton" Content="-" HorizontalAlignment="Left" Margin="178,144,0,0" VerticalAlignment="Top" Width="52" Click="OperationButtonClicked" Height="29" Background="#D9EFFF" BorderBrush="White" Foreground="#FF5AB6FE" FontWeight="SemiBold" FontSize="14"/>
+                    <Button x:Name="addButton" Content="+" HorizontalAlignment="Left" Margin="178,110,0,0" VerticalAlignment="Top" Width="52" Click="OperationButtonClicked" Height="29" Background="#D9EFFF" BorderBrush="White" Foreground="#FF5AB6FE" FontWeight="SemiBold" FontSize="14"/>
+                    <Button x:Name="divButton" Content="/" HorizontalAlignment="Left" Margin="178,75,0,0" VerticalAlignment="Top" Width="52" Click="OperationButtonClicked" Height="30" Background="#D9EFFF" BorderBrush="White" Foreground="#FF5AB6FE" FontWeight="SemiBold" FontSize="14"/>
+                    <Button x:Name="multButton" Content="x" HorizontalAlignment="Left" Margin="178,0,0,0" VerticalAlignment="Top" Width="52" Click="OperationButtonClicked" Height="33" Background="#D9EFFF" BorderBrush="White" Foreground="#FF5AB6FE" FontWeight="SemiBold" FontSize="14"/>
+                    <Button x:Name="calcButton" Content="=" HorizontalAlignment="Left" Margin="178,178,0,0" VerticalAlignment="Top" Width="52" Click="ResultButtonClicked" Height="29" Background="#D9EFFF" BorderBrush="White" Foreground="#FF5AB6FE" FontWeight="SemiBold" FontSize="14"/>
+                    <Button x:Name="decPointButton" Content="." HorizontalAlignment="Left" Margin="117,178,0,0" VerticalAlignment="Top" Width="52" Click="NumberButtonClicked" Height="29" Background="#D9EFFF" BorderBrush="White" Foreground="#FF5AB6FE" FontWeight="SemiBold" FontSize="14"/>
+
+
+                </Grid>
+
+            </Border>
+
+
         </Viewbox>
 
     </Grid>
